@@ -1,0 +1,22 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container">
+    <img src="{{author.img.url}}" height="350" width="350" align="right" class="img-thumbnail">
+    <h2>{{author.name}}</h2>
+    <h4>Годы жизни: {{author.birth | date:"d-m-Y"}} - {{author.death | date:"d-m-Y"}}</h4>
+    <h4>Страна: </h4>
+    <h6>{{author.information}}</h6>
+</div>
+
+<div class="container">
+    <h3>Список книг: </h3>
+    {% for b in author_books %}
+    <a href="/content/books/{{b.id}}" ><h4>{{b.name}} ({{b.year}})</h4></a>
+    {% endfor %}
+</div>
+
+{% endblock %}

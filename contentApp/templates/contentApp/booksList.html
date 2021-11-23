@@ -1,0 +1,12 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+
+{% for b in books %}
+<div class="container">
+    <a href="/content/books/{{b.id}}"  ><h2 class="text-muted">{{ b.name }}</h2></a>
+    <h5>{{b.author}}</h5>
+</div>
+{% endfor %}
+
+{% endblock %}

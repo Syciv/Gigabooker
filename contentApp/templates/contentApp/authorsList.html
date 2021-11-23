@@ -1,0 +1,13 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+
+{% load static %}
+
+{% for a in authors %}
+<div class="container">
+    <a href="/content/authors/{{a.id}}"><h3>{{a.name}}</h3></a>
+</div>
+{% endfor %}
+
+{% endblock %}

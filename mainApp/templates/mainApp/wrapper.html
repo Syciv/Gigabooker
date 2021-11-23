@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GigaBooker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <style type="text/css">
+    A {
+        text-decoration: none;
+    }
+    A:hover {
+        text-decoration: none;
+    }
+    .main_name{
+
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="jumbotron">
+    <h1 align="center"> <a href="/" class=""> GigaBooker</a>
+        <a href="/content/books" class="btn btn-success btn-lg">Книги</a>
+        <a href="/content/authors" class="btn btn-success btn-lg">Авторы</a>
+        <!--<a href="#" class="btn btn-success btn-lg">Персонажи?</a> -->
+    </h1>
+
+</div>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
