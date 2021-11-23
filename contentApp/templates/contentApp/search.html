@@ -1,0 +1,33 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+
+{% load static %}
+<div class="container">
+    <h2>Результаты поиска: {{sk}}</h2>
+    <h3>Авторы</h3>
+    {% if authors %}
+        {% for a in authors %}
+        <div class="container" style="display: inline">
+            <!--<img src="{{a.img.url}}" height="100" width="100" align="left" class="img-thumbnail"> -->
+            <a href="/content/authors/{{a.id}}"><h2 class="text-muted">{{a.name}}</h2></a>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h5>Ничего не найдено</h5>
+    {% endif %}
+    <br>
+    <h3>Книги</h3>
+    {% if books %}
+        {% for b in books %}
+        <div class="container">
+            <a href="/content/books/{{b.id}}"  ><h2 class="text-muted">{{ b.name }}</h2></a>
+            <h5>{{b.author}}</h5>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h5>Ничего не найдено</h5>
+    {% endif %}
+</div>
+
+{% endblock %}

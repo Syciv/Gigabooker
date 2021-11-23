@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework.response import Response
@@ -92,3 +93,16 @@ class ReviewCreateView(APIView):
             review.save()
 
         return Response(status=201)
+
+
+class SearchListView(APIView):
+    """
+    Вывод результатов поиска
+    """
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'contentApp/search.html'
+
+    def get(self, request, sk):
+        books = Books.objects.filter(Q(name__icontains=sk.lower()))
+        authors = Authors.objects.filter(Q(name__icontains=sk.lower()))
+        return Response({'books': books, 'authors': authors})
