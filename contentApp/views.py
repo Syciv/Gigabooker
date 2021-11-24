@@ -1,8 +1,11 @@
+import unicodedata
+
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.db.models.functions import Lower, Upper
 
 from contentApp.models import Books, Authors, Reviews
 from rest_framework.views import APIView
@@ -78,12 +81,6 @@ class ReviewCreateView(APIView):
     """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'contentApp/review.html'
-    """
-    def get(self, request, pk):
-         review = get_object_or_404(Reviews, pk=pk)
-        serializer = ReviewCreateSerializer(review)
-        return Response({'serializer': serializer, 'profile': review})
-    """
 
     def post(self, request, pk):
         # review = get_object_or_404(Reviews, pk=pk)
@@ -103,6 +100,7 @@ class SearchListView(APIView):
     template_name = 'contentApp/search.html'
 
     def get(self, request, sk):
-        books = Books.objects.filter(Q(name__icontains=sk.lower()))
-        authors = Authors.objects.filter(Q(name__icontains=sk.lower()))
-        return Response({'books': books, 'authors': authors})
+        # Поиск без чуствительности к регистру не работает (особенности sqlite)
+        books = Books.objects.filter(name__icontains=sk)
+        authors = Authors.objects.filter(name__icontains=sk)
+        return Response({'books': books, 'authors': authors, 'sk': sk})

@@ -39,6 +39,16 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+"""
+class SearchSerializer(serializers.ModelSerializer):
+
+    search = serializers.CharField(
+        max_length=50,
+        style={'placeholder': 'Что же мы ищем?'}
+    )
+"""
+
+
 class ReviewCreateSerializer(serializers.ModelSerializer):
     """
     Отзыв о книге, фильме

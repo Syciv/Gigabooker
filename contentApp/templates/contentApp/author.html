@@ -5,7 +5,9 @@
 {% load static %}
 
 <div class="container">
-    <img src="{{author.img.url}}" height="350" width="350" align="right" class="img-thumbnail">
+    {% if author.img %}
+        <img src="{{author.img.url}}" height="350" width="350" align="right" class="img-thumbnail">
+    {% endif %}
     <h2>{{author.name}}</h2>
     <h4>Годы жизни: {{author.birth | date:"d-m-Y"}} - {{author.death | date:"d-m-Y"}}</h4>
     <h4>Страна: </h4>

@@ -8,7 +8,7 @@
     <h3>Авторы</h3>
     {% if authors %}
         {% for a in authors %}
-        <div class="container" style="display: inline">
+        <div class="container" >
             <!--<img src="{{a.img.url}}" height="100" width="100" align="left" class="img-thumbnail"> -->
             <a href="/content/authors/{{a.id}}"><h2 class="text-muted">{{a.name}}</h2></a>
         </div>
@@ -22,7 +22,7 @@
         {% for b in books %}
         <div class="container">
             <a href="/content/books/{{b.id}}"  ><h2 class="text-muted">{{ b.name }}</h2></a>
-            <h5>{{b.author}}</h5>
+            <h6>{{b.author}}</h6>
         </div>
         {% endfor %}
     {% else %}

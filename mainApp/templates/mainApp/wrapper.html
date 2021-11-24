@@ -15,7 +15,10 @@
   </style>
     <script>
         function toSearch(){
-            document.location.replace('http://127.0.0.1:8000/content/search=' + document.getElementById('search').value, '_blank');
+            sk = document.getElementById('search').value
+            if (sk != ''){
+                document.location.replace('http://127.0.0.1:8000/content/search=' + sk, '_blank');
+            }
         }
 
         function onPress(e){
@@ -38,14 +41,11 @@
         </div>
         <br>
         <div>
-            <input id="search" placeholder="Что же вы ищете?" onkeypress="return onPress(event)" class="form-control" style="width:400px"> <br>
-            <input class="btn btn-success btn-lg" type="submit" value="Поиск" style="height:40px;width:80px;font-size:10pt"
-                   onclick="toSearch()">
 
-            <!--<form>
-                <input type="text" style="height:30px;width:400px;font-size:11pt">
-                <input  class="btn btn-success btn-lg" type="submit" value="Поиск" style="height:40px;width:100px;font-size:10pt">
-            </form> -->
+            <input id="search" placeholder="Что же вы ищете?" onkeypress="return onPress(event)" class="form-control" style="width:400px"> <br>
+            <!-- <input class="btn btn-success btn-lg" type="submit" value="Поиск" style="height:40px;width:80px;font-size:10pt"
+                   onclick="toSearch()"> -->
+
         </div>
 
         <!--<a href="#" class="btn btn-success btn-lg">Персонажи?</a> -->
