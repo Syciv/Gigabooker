@@ -1,0 +1,17 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block content %}
+{% load rest_framework %}
+
+<div class = "container" align="center">
+ <h4>Авторизация</h4>
+    <form method="POST" action="/auth/token/login">
+        {% csrf_token %}
+        <!--<p><input name="username" class="form-control" type="input" placeholder="Логин" style="width:400px"> </p>
+        <p><input name="password" class="form-control" type="password" placeholder="Пароль" input_style="password" style="width:400px"></p> -->
+        {% render_form serializer template_pack='rest_framework/inline' %}
+        <p><input  class="btn btn-success btn-lg" type="submit" value="Ок" align="left"></p>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,8 +1,4 @@
-from django.views.generic import ListView, DetailView
-from django.conf.urls import url, include
-from contentApp.models import Books, Authors
 from contentApp import views
-from django.conf.urls.static import static
 from django.urls import path
 
 from gigabooker import settings

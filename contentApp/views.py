@@ -104,3 +104,4 @@ class SearchListView(APIView):
         books = Books.objects.filter(name__icontains=sk)
         authors = Authors.objects.filter(name__icontains=sk)
         return Response({'books': books, 'authors': authors, 'sk': sk})
+
