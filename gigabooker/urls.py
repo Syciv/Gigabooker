@@ -11,5 +11,4 @@ urlpatterns = [
     path('api/v1/', include('contentApp.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('user/', include('usersApp.urls')),
 ]

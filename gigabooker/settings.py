@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'djoser',
     'mainApp',
     'contentApp',
-    'usersApp', 
 ]
 
 MIDDLEWARE = [

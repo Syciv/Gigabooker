@@ -1,6 +1,14 @@
 from rest_framework import serializers
-
 from contentApp.models import *
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    """
+    Отзыв о книге
+    """
+    class Meta:
+        model = Reviews
+        fields = '__all__'
 
 
 class BookListSerializer(serializers.ModelSerializer):
@@ -9,13 +17,15 @@ class BookListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Books
-        fields = ("name", "year", "author", )
+        fields = ("name", "year", "author", "img")
 
 
 class BookSerializer(serializers.ModelSerializer):
     """
     Полная информация о книге
     """
+    reviews = ReviewSerializer(many=True)
+
     class Meta:
         model = Books
         fields = '__all__'
@@ -27,13 +37,15 @@ class AuthorListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Authors
-        fields = ("name", "img")
+        fields = ("name", "img", "birth", "death")
 
 
 class AuthorSerializer(serializers.ModelSerializer):
     """
     Полная информация об авторе
     """
+    books = BookListSerializer(many=True)
+
     class Meta:
         model = Authors
         fields = '__all__'
@@ -41,24 +53,8 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class ReviewCreateSerializer(serializers.ModelSerializer):
     """
-    Отзыв о книге, фильме
+    Отзыв о книге
     """
-    target = serializers.CharField(read_only=True)
-
-    name = serializers.CharField(
-        max_length=50,
-        style={'placeholder': 'Ваше имя'}
-    )
-    shortReview = serializers.CharField(
-        max_length=100,
-        style={'placeholder': 'Кратко'}
-    )
-    text = serializers.CharField(
-        max_length=10000,
-        style={'base_template': 'textarea.html', 'placeholder': 'Отзыв', 'rows': 5}
-    )
-
     class Meta:
         model = Reviews
         exclude = ("date", )
-        # fields = '__all__'
