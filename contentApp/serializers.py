@@ -25,6 +25,11 @@ class BookSerializer(serializers.ModelSerializer):
     Полная информация о книге
     """
     reviews = ReviewSerializer(many=True)
+    rating = serializers.SerializerMethodField()
+
+    # Получение рейтинга книги в процентах
+    def get_rating(self, ob):
+        return ob.reviews.filter(recommend=True).count() / ob.reviews.all().count() * 100
 
     class Meta:
         model = Books
@@ -58,3 +63,4 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviews
         exclude = ("date", )
+

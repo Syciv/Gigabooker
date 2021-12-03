@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.db import models
-
+from django.contrib.auth.models import User
 #  height_field=300, width_field=300,
 
 
@@ -34,8 +34,10 @@ class Authors(models.Model):
 
 
 class Reviews(models.Model):
-    name = models.CharField(max_length=100)
+    # name = models.CharField(max_length=100)
     shortReview = models.CharField(max_length=150)
     text = models.TextField()
     date = models.DateTimeField(default=datetime.now())
     target = models.ForeignKey('Books', on_delete=models.CASCADE, related_name="reviews")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
+    recommend = models.BooleanField(default=True)

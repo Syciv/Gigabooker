@@ -48,8 +48,6 @@ class AuthorDetailView(APIView):
     """
     Вывод всей информации об авторе
     """
-    permission_classes = [permissions.IsAuthenticated]
-
     def get(self, request, pk):
         author = Authors.objects.get(id=pk)
         serializer = AuthorSerializer(author)
@@ -61,7 +59,7 @@ class ReviewCreateView(APIView):
     """
     Создание отзыва
     """
-    def post(self, request, pk):
+    def post(self, request):
         review = ReviewCreateSerializer(data=request.data)
         if review.is_valid():
             review.save()
